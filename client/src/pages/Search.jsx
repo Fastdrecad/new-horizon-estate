@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Card from "../components/Card";
 
 export default function Search() {
   const navigate = useNavigate();
@@ -66,17 +67,11 @@ export default function Search() {
       e.target.id === "rent" ||
       e.target.id === "sale"
     ) {
-      setSidebarData({
-        ...sidebarData,
-        type: e.target.id,
-      });
+      setSidebarData({ ...sidebarData, type: e.target.id });
     }
 
     if (e.target.id === "searchTerm") {
-      setSidebarData({
-        ...sidebarData,
-        searchTerm: e.target.value,
-      });
+      setSidebarData({ ...sidebarData, searchTerm: e.target.value });
     }
 
     if (
@@ -87,7 +82,7 @@ export default function Search() {
       setSidebarData({
         ...sidebarData,
         [e.target.id]:
-          e.target.id || e.target.checked === "true" ? true : false,
+          e.target.checked || e.target.checked === "true" ? true : false,
       });
     }
 
@@ -95,13 +90,11 @@ export default function Search() {
       const sort = e.target.value.split("_")[0] || "created_at";
 
       const order = e.target.value.split("_")[1] || "desc";
-      setSidebarData({
-        ...sidebarData,
-        sort,
-        order,
-      });
+
+      setSidebarData({ ...sidebarData, sort, order });
     }
   };
+
   // console.log(sidebarData);
 
   const handleSubmit = (e) => {
@@ -120,7 +113,7 @@ export default function Search() {
   };
 
   return (
-    <div className="flex flex-col md:flex-row">
+    <div className="flex flex-col md:flex-row mx-auto">
       <div className="p-7 border-b-2 md:border-r-2 md:min-h-screen">
         <form onSubmit={handleSubmit} className="flex flex-col gap-8">
           <div className="flex items-center gap-3">
@@ -222,10 +215,26 @@ export default function Search() {
           </button>
         </form>
       </div>
-      <div className="">
+      <div className="flex-1">
         <h1 className="text-3xl font-semibold border-b p-3 text-slate-700 mt-5">
           Listing results
         </h1>
+        <div className="p-7 flex flex-wrap gap-4">
+          {!loading && listings.length === 0 && (
+            <p className="text-xl text-slate-700 ">No listing found!</p>
+          )}
+          {loading && (
+            <p className="text-xl text-slate-700 text-center w-full">
+              Loading listings...
+            </p>
+          )}
+
+          {!loading &&
+            listings &&
+            listings.map((listing) => (
+              <Card key={listing._id} listing={listing} />
+            ))}
+        </div>
       </div>
     </div>
   );
