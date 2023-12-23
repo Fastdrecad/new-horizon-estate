@@ -2,9 +2,10 @@ import { MdLocationOn } from "react-icons/md";
 import { Link } from "react-router-dom";
 
 export default function Card({ listing }) {
+  console.log(listing);
   return (
     <div className="bg-white shadow-md hover:shadow-3xl transition-shadow overflow-hidden rounded-lg w-full sm:w-[330px]">
-      <Link to={`/listing/${listing.id}`}>
+      <Link to={`/listing/${listing._id}`}>
         <img
           src={listing.imageUrls[0]}
           alt="listing cover"

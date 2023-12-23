@@ -48,7 +48,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div>
+    <>
       {/* top */}
       <div className="flex flex-col gap-6 p-28 px-3 max-w-6xl mx-auto">
         <h1 className="text-slate-700 font-bold text-3xl lg:text-6xl">
@@ -91,7 +91,7 @@ export default function Home() {
       {/* TODO: change max-width if needed */}
       <div className="max-w-screen-2xl mx-auto p-3 flex flex-col gap-8 my-10">
         {offerListings && offerListings.length > 0 && (
-          <div className="">
+          <div className="flex flex-col ">
             <div className="my-3">
               <h2 className="text-3xl text-slate-600 font-bold">
                 Recent Offers
@@ -123,7 +123,7 @@ export default function Home() {
                 View more
               </Link>
             </div>
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap  gap-4">
               {rentListings.map((listing) => (
                 <Card listing={listing} key={listing._id} />
               ))}
@@ -143,7 +143,7 @@ export default function Home() {
                 View more
               </Link>
             </div>
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap  gap-4">
               {saleListings.map((listing) => (
                 <Card listing={listing} key={listing._id} />
               ))}
@@ -151,6 +151,6 @@ export default function Home() {
           </div>
         )}
       </div>
-    </div>
+    </>
   );
 }
