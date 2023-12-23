@@ -50,7 +50,7 @@ export default function Navbar() {
           </button>
         </form>
         <ul className="flex items-center gap-4 font-medium text-lg">
-          <Link to="/home">
+          <Link to="/">
             <li className="hidden sm:inline  text-slate-700 hover:underline">
               Home
             </li>
