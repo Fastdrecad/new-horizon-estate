@@ -67,11 +67,11 @@ export default function Home() {
           to={'/search'}
           className='text-sm sm:text-xl text-blue-800 font-bold hover:underline max-w-fit'
         >
-          <span style={{ display: 'block' }}>
+          <span className='block'>
             Let&apos;s get started
-            <span className='animate-dot'>.</span>
-            <span className='animate-dot'>.</span>
-            <span className='animate-dot'>.</span>
+            <span className='animate-animateDot1'>.</span>
+            <span className='animate-animateDot2'>.</span>
+            <span className='animate-animateDot3'>.</span>
           </span>
         </Link>
       </div>
