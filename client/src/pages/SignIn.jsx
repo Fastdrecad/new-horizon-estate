@@ -5,7 +5,7 @@ import OAuth from "../components/OAuth";
 import {
   signInFailure,
   signInStart,
-  signInSuccess,
+  signInSuccess
 } from "../redux/user/userSlice";
 
 export default function SignIn() {
@@ -17,7 +17,7 @@ export default function SignIn() {
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.id]: e.target.value,
+      [e.target.id]: e.target.value
     });
   };
 
@@ -29,7 +29,7 @@ export default function SignIn() {
       const res = await fetch("/api/auth/signin", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(formData)
       });
 
       const data = await res.json();
@@ -44,7 +44,6 @@ export default function SignIn() {
     }
   };
 
-  console.log(formData);
   return (
     <div className="p-3 max-w-lg mx-auto">
       <h1 className="text-3xl text-center font-semibold my-7">Sign In</h1>

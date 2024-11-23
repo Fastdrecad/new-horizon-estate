@@ -1,0 +1,27 @@
+services:
+  client:
+    image: ${DOCKER_USERNAME}/new-horizons-client:latest
+    restart: always
+    ports:
+      - "8081:80"
+    environment:
+      - NODE_ENV=production
+      - VITE_FIREBASE_API_KEY=${VITE_FIREBASE_API_KEY}
+    networks:
+      - horizons-net
+    container_name: new-horizons-client-prod
+
+  api:
+    image: ${DOCKER_USERNAME}/new-horizons-api:latest
+    restart: always
+    container_name: new-horizons-api-prod
+    ports:
+      - "4000:3000"
+    networks:
+      - horizons-net
+    env_file:
+      - .env
+
+networks:
+  horizons-net:
+    driver: bridge

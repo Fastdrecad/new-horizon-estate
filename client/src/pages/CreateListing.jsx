@@ -2,7 +2,7 @@ import {
   getDownloadURL,
   getStorage,
   ref,
-  uploadBytesResumable,
+  uploadBytesResumable
 } from "firebase/storage";
 import { useState } from "react";
 import { useSelector } from "react-redux";
@@ -25,13 +25,12 @@ export default function CreateListing() {
     discountPrice: 0,
     offer: false,
     parking: false,
-    furnished: false,
+    furnished: false
   });
   const [imageUploadError, setImageUploadError] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
-  console.log(formData);
 
   const storeImage = async (file) => {
     return new Promise((resolve, reject) => {
@@ -71,7 +70,7 @@ export default function CreateListing() {
         .then((urls) => {
           setFormData({
             ...formData,
-            imageUrls: formData.imageUrls.concat(urls),
+            imageUrls: formData.imageUrls.concat(urls)
           });
           setImageUploadError(false);
           setUploading(false);
@@ -90,7 +89,7 @@ export default function CreateListing() {
   const handleRemoveImage = (index) => {
     setFormData({
       ...formData,
-      imageUrls: formData.imageUrls.filter((_, i) => i !== index),
+      imageUrls: formData.imageUrls.filter((_, i) => i !== index)
     });
   };
 
@@ -98,7 +97,7 @@ export default function CreateListing() {
     if (e.target.id === "sale" || e.target.id === "rent") {
       setFormData({
         ...formData,
-        type: e.target.id,
+        type: e.target.id
       });
     }
     if (
@@ -108,7 +107,7 @@ export default function CreateListing() {
     ) {
       setFormData({
         ...formData,
-        [e.target.id]: !formData[e.target.id],
+        [e.target.id]: !formData[e.target.id]
       });
     }
     if (
@@ -118,7 +117,7 @@ export default function CreateListing() {
     ) {
       setFormData({
         ...formData,
-        [e.target.id]: e.target.value,
+        [e.target.id]: e.target.value
       });
     }
   };
@@ -135,12 +134,12 @@ export default function CreateListing() {
       const res = await fetch("/api/listing/create", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/json"
         },
         body: JSON.stringify({
           ...formData,
-          userRef: currentUser._id,
-        }),
+          userRef: currentUser._id
+        })
       });
       const data = await res.json();
       setLoading(false);

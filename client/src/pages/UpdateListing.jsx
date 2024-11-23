@@ -2,7 +2,7 @@ import {
   getDownloadURL,
   getStorage,
   ref,
-  uploadBytesResumable,
+  uploadBytesResumable
 } from "firebase/storage";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -25,7 +25,7 @@ export default function UpdateListing() {
     discountPrice: 0,
     offer: false,
     parking: false,
-    furnished: false,
+    furnished: false
   });
   const [imageUploadError, setImageUploadError] = useState(false);
   const [uploading, setUploading] = useState(false);
@@ -39,7 +39,6 @@ export default function UpdateListing() {
       const res = await fetch(`/api/listing/get/${listingId}`);
       const data = await res.json();
       if (data.success === false) {
-        console.log(data.message);
         return;
       }
       setFormData(data);
@@ -86,7 +85,7 @@ export default function UpdateListing() {
         .then((urls) => {
           setFormData({
             ...formData,
-            imageUrls: formData.imageUrls.concat(urls),
+            imageUrls: formData.imageUrls.concat(urls)
           });
           setImageUploadError(false);
           setUploading(false);
@@ -105,7 +104,7 @@ export default function UpdateListing() {
   const handleRemoveImage = (index) => {
     setFormData({
       ...formData,
-      imageUrls: formData.imageUrls.filter((_, i) => i !== index),
+      imageUrls: formData.imageUrls.filter((_, i) => i !== index)
     });
   };
 
@@ -113,7 +112,7 @@ export default function UpdateListing() {
     if (e.target.id === "sale" || e.target.id === "rent") {
       setFormData({
         ...formData,
-        type: e.target.id,
+        type: e.target.id
       });
     }
     if (
@@ -123,7 +122,7 @@ export default function UpdateListing() {
     ) {
       setFormData({
         ...formData,
-        [e.target.id]: !formData[e.target.id],
+        [e.target.id]: !formData[e.target.id]
       });
     }
     if (
@@ -133,7 +132,7 @@ export default function UpdateListing() {
     ) {
       setFormData({
         ...formData,
-        [e.target.id]: e.target.value,
+        [e.target.id]: e.target.value
       });
     }
   };
@@ -150,12 +149,12 @@ export default function UpdateListing() {
       const res = await fetch(`/api/listing/update/${params.listingId}`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/json"
         },
         body: JSON.stringify({
           ...formData,
-          userRef: currentUser._id,
-        }),
+          userRef: currentUser._id
+        })
       });
       const data = await res.json();
       setLoading(false);
